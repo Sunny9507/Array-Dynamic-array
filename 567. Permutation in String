@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        if (s1.length() > s2.length()) return false;
+        if (s1.empty()) return true;
+
+        int x = s1.length(), y = s2.length();
+        vector<int> array1(26, 0);
+        vector<int> array2(26, 0);
+
+        for (int i = 0; i < x; i++) {
+            array1[s1[i] - 'a']++;
+            array2[s2[i] - 'a']++;
+        }
+
+        for (int i = x; i < y; i++) {
+            if (array1 == array2) return true;
+            array2[s2[i - x] - 'a']--;
+            array2[s2[i] - 'a']++;
+        }
+
+        return array1 == array2;
+    }
+};
