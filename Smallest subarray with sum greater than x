@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int smallestSubWithSum(int x, vector<int>& arr) {
+        int n = arr.size();
+
+        int minLength = INT_MAX;  // Initialize minLength to positive infinity
+        int curr_sum = 0;
+        int start = 0;
+
+        for (int i = 0; i < n; ++i) {
+            curr_sum += arr[i];
+
+            // Update minLength if a subarray with sum greater than x is found
+            while (curr_sum > x) {
+                minLength = min(minLength, i - start + 1);
+                curr_sum -= arr[start++];
+            }
+        }
+
+        // Check if the entire array sum is less than x (no subarray satisfies the condition)
+        return (minLength == INT_MAX) ? 0 : minLength;
+    }
+};
