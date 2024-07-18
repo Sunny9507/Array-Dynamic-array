@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int find_median(const std::vector<int>& v) {
+        
+        vector<int> sorted_v = v;
+        sort(sorted_v.begin(), sorted_v.end());
+
+        
+        int n = sorted_v.size();
+        if (n % 2 == 0) {
+            
+            int mid1 = n / 2 - 1;
+            int mid2 = n / 2;
+            return (sorted_v[mid1] + sorted_v[mid2]) / 2;
+        } else {
+            
+            int mid = n / 2;
+            return sorted_v[mid];
+        }
+    }
+};
