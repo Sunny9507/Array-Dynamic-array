@@ -1,0 +1,33 @@
+class Solution{
+  public:
+    vector<string> genIp(string &s) {
+        vector<string> result;
+    int n = s.length();
+    
+    // Iterate over the possible positions of the first, second, and third dots
+    for (int i = 1; i < n && i < 4; i++) {
+        for (int j = i + 1; j < n && j < i + 4; j++) {
+            for (int k = j + 1; k < n && k < j + 4; k++) {
+                // Split the string into four parts
+                string A = s.substr(0, i);
+                string B = s.substr(i, j - i);
+                string C = s.substr(j, k - j);
+                string D = s.substr(k);
+
+                // Check if all parts are valid
+                if (isValid(A) && isValid(B) && isValid(C) && isValid(D)) {
+                    result.push_back(A + "." + B + "." + C + "." + D);
+                }
+            }
+        }
+    }
+    return result;
+    }
+
+bool isValid(string part) {
+    if (part.length() > 3 || part.length() == 0 || (part[0] == '0' && part.length() > 1))
+        return false;
+    int num = stoi(part);
+    return num >= 0 && num <= 255;
+}
+};
