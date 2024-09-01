@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int dataTypeSize(string str) {
+    if (str == "Character") {
+        return sizeof(char); // 1 byte
+    } else if (str == "Integer") {
+        return sizeof(int); // 4 bytes (typically)
+    } else if (str == "Long") {
+        return sizeof(long); // 4 or 8 bytes depending on the system
+    } else if (str == "Float") {
+        return sizeof(float); // 4 bytes
+    } else if (str == "Double") {
+        return sizeof(double); // 8 bytes
+    } else {
+        return -1; // Invalid data type
+    }
+    }
+};
